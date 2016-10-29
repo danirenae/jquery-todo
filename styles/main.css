@@ -1,0 +1,28 @@
+body {
+  font: normal normal 13px/16px "Open Sans", sans-serif;
+  background: #ccc; }
+
+#wrap {
+  width: 900px;
+  margin: 0 auto; }
+
+.whole {
+  padding: 20px;
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 40px;
+  background: white;
+  border-radius: 5px;
+  display: center; }
+
+.completed {
+  display: inline-block;
+  border-style: solid;
+  text-align: center;
+  width: 40%; }
+
+.todo {
+  display: inline-block;
+  border-style: solid;
+  text-align: center;
+  width: 40%; }

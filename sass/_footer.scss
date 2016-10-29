@@ -1,0 +1,33 @@
+footer {
+  background-color: black;
+  bottom: 0px;
+  text-align: center;
+  border: 3px solid gray;
+  @include border-radius(10px);
+  position: fixed;
+  width: 100%;
+
+  .block-awesome {
+  @extend %block;
+  background-color: green;
+  @include border-radius(50%);
+}
+
+  .block-danger {
+  @extend %block;
+  background-color: red;
+  @include border-radius(50%);
+}
+
+.block-caution {
+   @extend %block;
+   background-color: yellow;
+   @include border-radius(50px);
+}
+
+.block-disabled {
+   @extend %block;
+   background-color: lightgrey;
+   @include border-radius(5px);
+}
+}
