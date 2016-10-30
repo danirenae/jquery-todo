@@ -1,10 +1,8 @@
 body {
-  font: normal normal 13px/16px "Open Sans", sans-serif;
-  background: #ccc; }
-
-#wrap {
-  width: 900px;
-  margin: 0 auto; }
+  font: sans-serif;
+  color: white;
+  background: #ccc;
+  margin: auto; }
 
 .whole {
   padding: 20px;
@@ -15,14 +13,19 @@ body {
   border-radius: 5px;
   display: center; }
 
-.completed {
+.columns {
   display: inline-block;
   border-style: solid;
+  border-color: white;
+  text-decoration: white;
   text-align: center;
-  width: 40%; }
+  display: center;
+  width: 40%;
+  margin-left: 60px;
+  margin-top: 30px;
+  padding-bottom: 300px;
+  list-style-type: none; }
 
-.todo {
-  display: inline-block;
-  border-style: solid;
-  text-align: center;
-  width: 40%; }
+.out {
+  display: inline-block center;
+  text-align: center; }

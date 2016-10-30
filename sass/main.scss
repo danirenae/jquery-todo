@@ -1,5 +1,5 @@
-@import 'extends';
-@import 'mixins';
+// @import 'extends';
+// @import 'mixins';
 
 
 
@@ -7,15 +7,11 @@
 
 
 body {
-font: normal normal 13px/16px "Open Sans", sans-serif;
+font: sans-serif;
+color: white;
 background: #ccc;
+margin: auto;
 }
-
-#wrap {
-  width: 900px;
-  margin: 0 auto;
-}
-
 
 .whole {
 padding: 20px;
@@ -28,21 +24,32 @@ display: center;
 }
 
 
-.completed {
-  // width: 75%;
+.columns {
   display: inline-block;
   border-style: solid;
+  border-color: white;
+  text-decoration: white;
   text-align: center;
-    width: 40%;
-
+  display: center;
+  width: 40%;
+  margin-left: 60px;
+  margin-top: 30px;
+  padding-bottom: 300px;
+  list-style-type: none;
 }
 
-.todo {
-  display: inline-block;
-  border-style: solid;
-  text-align: center;
-  width: 40%;
+// .todo {
+//   display: inline-block;
+//   border-style: solid;
+//   text-align: center;
+//   // width: 40%;
 
-  // margin: 10px;
-  // margin-left: 100px;
+//   // margin: 10px;
+//   // margin-left: 100px;
+// }
+
+.out {
+  display: inline-block center;
+  text-align: center;
+
 }
