@@ -4,6 +4,15 @@ body {
   background: #ccc;
   margin: auto; }
 
+ul li.editMode input[type=text] {
+  display: block; }
+
+ul li.editMode label {
+  display: none; }
+
+.inputTask {
+  display: none; }
+
 .whole {
   padding: 20px;
   width: 700px;
@@ -12,20 +21,3 @@ body {
   background: white;
   border-radius: 5px;
   display: center; }
-
-.columns {
-  display: inline-block;
-  border-style: solid;
-  border-color: white;
-  text-decoration: white;
-  text-align: center;
-  display: center;
-  width: 40%;
-  margin-left: 60px;
-  margin-top: 30px;
-  padding-bottom: 300px;
-  list-style-type: none; }
-
-.out {
-  display: inline-block center;
-  text-align: center; }

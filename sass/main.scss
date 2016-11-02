@@ -13,6 +13,18 @@ background: #ccc;
 margin: auto;
 }
 
+ul li.editMode input[type=text]{
+  display: block;
+}
+
+ul li.editMode label {
+  display: none;
+}
+
+
+.inputTask{
+ display:none;}
+
 .whole {
 padding: 20px;
 width: 700px;
@@ -24,19 +36,19 @@ display: center;
 }
 
 
-.columns {
-  display: inline-block;
-  border-style: solid;
-  border-color: white;
-  text-decoration: white;
-  text-align: center;
-  display: center;
-  width: 40%;
-  margin-left: 60px;
-  margin-top: 30px;
-  padding-bottom: 300px;
-  list-style-type: none;
-}
+// .columns {
+//   display: inline-block;
+//   border-style: solid;
+//   border-color: white;
+//   text-decoration: white;
+//   text-align: center;
+//   display: center;
+//   width: 40%;
+//   margin-left: 60px;
+//   margin-top: 30px;
+//   padding-bottom: 300px;
+//   list-style-type: none;
+// }
 
 // .todo {
 //   display: inline-block;
@@ -48,8 +60,8 @@ display: center;
 //   // margin-left: 100px;
 // }
 
-.out {
-  display: inline-block center;
-  text-align: center;
+// .out {
+//   display: inline-block center;
+//   text-align: center;
 
-}
+// }
