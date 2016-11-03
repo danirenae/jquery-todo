@@ -38,6 +38,16 @@
   });
 }
 
+function createLogoutButton(){
+  FbAPI.getUser(apiKeys, uid).then(function(userResponse){
+    $("#logout-container").html("");
+    let currentUsername = userResponse.username;
+    console.log(userResponse);
+    let logoutButton = `<button class="btn btn-danger" id="logoutButton">LOGOUT ${currentUsername}</button>`
+    $("#logout-container").append(logoutButton);
+  });
+}
+
 $(document).ready(function(){
   FbAPI.firebaseCredentials().then(function(keys){
     console.log("keys", keys);
@@ -45,10 +55,11 @@ $(document).ready(function(){
       firebase.initializeApp(apiKeys);
       });
 
-$('#click-me').on('click', function(){
+$('#add-todo-button').on('click', function(){
 let newItem = {
-  "task": $('#input').val(), //this grabs the value of the input and puts it into object that we are creating
-  "isCompleted": false
+  "task": $('#add-todo-text').val(), //this grabs the value of the input and puts it into object that we are creating
+  "isCompleted": false,
+  "uid": uid
 };
   FbAPI.addTodo(apiKeys, newItem).then(function(){
     putTodoInDOM();
@@ -70,13 +81,13 @@ $('ul').on("click", ".edit", function(){
     let itemId = $(this).data("fbid");
     let editedItem = {
       "task": parent.find(".inputTask").val(),
-      "isCompleted": false
+      "isCompleted": false,
+      "uid": uid
     };
     FbAPI.editTodo(apiKeys, itemId, editedItem).then(function(response){
     parent.removeClass("editMode");
     putTodoInDOM();
     });
-    //firebase stuff
   }
   });
 
@@ -87,7 +98,8 @@ $('ul').on("change", 'input[type="checkbox"]', function(){
 
   let editedItem = {
     "task": task,
-    "isCompleted": !updatedIsCompleted
+    "isCompleted": !updatedIsCompleted,
+    "uid": uid
   };
   FbAPI.editTodo(apiKeys, itemId, editedItem).then(function(){
     putTodoInDOM();
@@ -98,16 +110,25 @@ $('ul').on("change", 'input[type="checkbox"]', function(){
 $('#registerButton').on("click", function(){
   let email = $("#inputEmail").val();
   let password = $("#inputPassword").val();
+  let username = $("#inputUsername").val();
   let user = {
     "email" : email,
-    "password" : password
+    "password" : password,
   };
-  FbAPI.registerUser(user).then(function(response){
-    console.log("register response", response);
+  FbAPI.registerUser(user).then(function(registerResponse){
+    console.log("register response", registerResponse);
+    let uid = registerResponse;
+    let newUser = {
+      "username": username,
+      "uid": registerResponse.uid
+    }
+    return FbAPI.addUser(apiKeys, newUser);
+  }).then(function(userResponse){
     return FbAPI.loginUser(user);
   }).then(function(loginResponse){
     console.log("login response", loginResponse);
     uid = loginResponse.uid;
+    createLogoutButton();
     putTodoInDOM();
     $('#login-container').addClass("hide");
     $('#todo-container').removeClass("hide"); //don't really understand this part - get clarification
@@ -125,19 +146,24 @@ $('#loginButton').on("click", function(){
   };
   FbAPI.loginUser(user).then(function(loginResponse){
     uid = loginResponse.uid;
+    createLogoutButton();
     putTodoInDOM();
     $('#login-container').addClass("hide");
     $('#todo-container').removeClass("hide");
-  })
-})
+  });
+});
 
-
-
-
-
-
-
-
+$("#logout-container").on("click", "#logoutButton", function(){
+  FbAPI.logoutUser();
+  uid = "";
+  $("#incomplete-tasks").html("");
+  $("#completed-tasks").html("");
+  $("#inputEmail").val("");
+  $("#inputPassword").val("");
+  $("#inputUsername").val("");
+  $("#login-container").removeClass("hide");
+  $("#todo-container").addClass("hide");
+});
 
 });
 
@@ -167,64 +193,3 @@ $('#loginButton').on("click", function(){
 
 
 
-
-
-
-
-// $(document).ready(function(){
-//   let chatItem = $('input').val();
-//   let output = $('.todo');
-//   let currentSelection = "";
-
-
-
-//   $('#click-me').on('click', (e)=>{
-//     $('input').html("");
-//     let chatItem = $('input').val();
-//     let output = $('.todo');
-//     // dom.html(''); // this will replace what is there in dom
-//     output.append(`<li><span class='chat'><input type='checkbox'>${chatItem}</span><button class='edit'>Edit</button></li>`); //this prints out the chat item to the dom
-//     chatItem.this.val = ""; // how can I clear the input?
-//   });
-
-// $(document).on('click', '.chat', function(){
-//   // $(this).fadeOut('slow');
-// });
-
-
-// $(document).on('click', '.edit', function(event){
-// let chatItem = $('input').val();
-//   currentSelection = event.currentTarget;
-//   currentSelection.classList.add("edit");
-
-//   // $(event.currentTarget).text();
-//   // chatItem.focus();
-// console.log(event);
-// });
-
-
-
-// });
-
-// jQuery(function($) {
-
-//   // Save the initial values of the inputs as placeholder text
-//   $('#theForm input').attr("data-placeholdertext", function() {
-//     return this.value;
-//   });
-
-//   // Hook up a handler to delete the placeholder text on focus,
-//   // and put it back on blur
-//   $('#theForm')
-//     .delegate('input', 'focus', function() {
-//       if (this.value === $(this).attr("data-placeholdertext")) {
-//         this.value = '';
-//       }
-//     })
-//     .delegate('input', 'blur', function() {
-//       if (this.value.length == 0) {
-//         this.value = $(this).attr("data-placeholdertext");
-//       }
-//     });
-
-// });

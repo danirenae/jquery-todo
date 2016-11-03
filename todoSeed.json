@@ -19,5 +19,17 @@
       "isCompleted": false,
       "uid" : "7pU0FoSN4Afk7qv46Z3fWSb9C0j1"
     }
+  },
+  "users": {
+    "user1":{
+      "username": "dani",
+      "uid": "VQYv2AIZMAVZ8vXsDGUXHepgno52"
+
+    },
+    "user2":{
+      "username": "hi",
+      "uid": "7pU0FoSN4Afk7qv46Z3fWSb9C0j1"
+
+    }
   }
 }
