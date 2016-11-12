@@ -43,7 +43,7 @@ function createLogoutButton(){
     $("#logout-container").html("");
     let currentUsername = userResponse.username;
     console.log(userResponse);
-    let logoutButton = `<button class="btn btn-danger" id="logoutButton">LOGOUT ${currentUsername}</button>`
+    let logoutButton = `<button class="btn btn-danger" id="logoutButton">LOGOUT ${currentUsername}</button>`;
     $("#logout-container").append(logoutButton);
   });
 }
@@ -121,7 +121,7 @@ $('#registerButton').on("click", function(){
     let newUser = {
       "username": username,
       "uid": registerResponse.uid
-    }
+    };
     return FbAPI.addUser(apiKeys, newUser);
   }).then(function(userResponse){
     return FbAPI.loginUser(user);
